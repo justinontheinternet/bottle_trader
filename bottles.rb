@@ -4,6 +4,8 @@
 @empty_bottles = 0
 @bottle_tally = 0
 @caps = 0
+@empty_exchange_tally = 0
+@cap_exchange_tally = 0
 
 def game_the_system
   loop do
@@ -39,6 +41,8 @@ end
 
 
 def trade_for_bottles
+  @cap_exchange_tally += @caps / 4
+  @empty_exchange_tally += @empty_bottles / 2
   @new_bottles =  @empty_bottles / 2 + @caps / 4
   @full_bottles = @new_bottles
   @bottle_tally += @new_bottles
@@ -48,7 +52,8 @@ end
 
 
 def total_bottles
-  puts "With $#{@cash} you could get #{@bottle_tally} bottle(s) and still have #{@empty_bottles} bottle(s), #{@caps} cap(s), and $#{@extra_cash} left over."
+  puts "With $#{@cash} you could get #{@bottle_tally} bottle(s) and still have #{@empty_bottles} bottle(s), #{@caps} cap(s), and $#{@extra_cash} left over.
+  That's #{@empty_exchange_tally} from trading bottles and #{@cap_exchange_tally} from trading caps."
   puts "Try again? ('yes' or 'no')"
   choice = gets.chomp
   case choice
